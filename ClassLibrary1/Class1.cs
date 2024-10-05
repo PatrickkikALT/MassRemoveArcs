@@ -34,7 +34,7 @@ namespace RemoveArcs
         {
             if (texture2D == null)
             {
-                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Resources.perfect.png"))
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Images.perfect.png"))
                 {
                     int data_len = (int)stream.Length;
                     byte[] data = new byte[data_len];
