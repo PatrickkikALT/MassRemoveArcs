@@ -30,6 +30,7 @@ namespace RemoveArcs
             ExtensionButtons.AddButton(button);
         }
         internal bool affectsSeveralObjects = false;
+
         public void LoadSprite()
         {
             if (texture2D == null)
@@ -53,9 +54,9 @@ namespace RemoveArcs
             {
                 var collection = BeatmapObjectContainerCollection.GetCollectionForType(arc.ObjectType);
                 collection.RemoveConflictingObjects(new[] { arc });
-                collection.DeleteObject(arc, true, true, inCollectionOfDeletes: affectsSeveralObjects);
-                
+                collection.DeleteObject(arc);
             }
+            BeatmapActionContainer.AddAction(new SelectionDeletedAction(foundArcs));
         }
         [Exit]
         private void Exit()
