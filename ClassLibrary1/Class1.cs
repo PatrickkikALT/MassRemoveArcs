@@ -56,6 +56,7 @@ namespace RemoveArcs
                 collection.DeleteObject(arc, true, true, inCollectionOfDeletes: affectsSeveralObjects);
                 
             }
+            BeatmapActionContainer.AddAction(new SelectionDeletedAction(foundArcs));
         }
         [Exit]
         private void Exit()
