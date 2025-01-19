@@ -12,7 +12,7 @@ using UnityEngine;
 namespace RemoveArcs
 {
     [Plugin("RemoveArcs")]
-    public class Plugin
+    public class RemoveArcsPlugin
     {
         private Texture2D texture2D;
         private Sprite sprite;
@@ -34,12 +34,13 @@ namespace RemoveArcs
         }
         public void LoadSprite()
         {
+
             if (texture2D == null)
             {
-                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Images.perfect.png"))
+                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Images.image.png"))
                 {
-                    int dataLen = (int)stream.Length;
-                    byte[] data = new byte[dataLen];
+                    var dataLen = (int)stream.Length;
+                    var data = new byte[dataLen];
                     stream.Read(data, 0, dataLen);
 
                     texture2D = new Texture2D(512, 512);
