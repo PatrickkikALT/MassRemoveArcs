@@ -18,32 +18,35 @@ namespace RemoveArcs
         private Sprite sprite;
         private static HashSet<BaseObject> SelectedObjects => SelectionController.SelectedObjects;
         public static bool IsArc(BaseObject o) => o is BaseArc;
-        private ExtensionButton button = new ExtensionButton();
+        private ExtensionButton button;
         [Init]
         private void Init()
         {
             Debug.Log("RemoveArcs has loaded");
             LoadSprite();
-            button.Icon = sprite;
-            button.Tooltip = "Remove Selected Arcs";
+            button = new ExtensionButton
+            {
+                Icon = sprite,
+                Tooltip = "Remove Selected Arcs"
+            };
             button.Click += RemoveArcs;
             ExtensionButtons.AddButton(button);
         }
-        internal bool affectsSeveralObjects = false;
         public void LoadSprite()
         {
             if (texture2D == null)
             {
                 using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Images.perfect.png"))
                 {
-                    int data_len = (int)stream.Length;
-                    byte[] data = new byte[data_len];
-                    stream.Read(data, 0, data_len);
+                    int dataLen = (int)stream.Length;
+                    byte[] data = new byte[dataLen];
+                    stream.Read(data, 0, dataLen);
 
                     texture2D = new Texture2D(512, 512);
                     texture2D.LoadImage(data);
                 }
-                if (sprite == null) sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0), 100.0f, 0, SpriteMeshType.Tight);
+                if (sprite == null)
+                    sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0), 100.0f, 0, SpriteMeshType.Tight);
             }
         }
         public void RemoveArcs()
@@ -53,8 +56,7 @@ namespace RemoveArcs
             {
                 var collection = BeatmapObjectContainerCollection.GetCollectionForType(arc.ObjectType);
                 collection.RemoveConflictingObjects(new[] { arc });
-                collection.DeleteObject(arc, true, true, inCollectionOfDeletes: affectsSeveralObjects);
-                
+                collection.DeleteObject(arc, true, true, inCollectionOfDeletes: true);
             }
             BeatmapActionContainer.AddAction(new SelectionDeletedAction(foundArcs));
         }
