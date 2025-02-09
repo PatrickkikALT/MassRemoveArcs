@@ -32,16 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FileBrowser">
-      <HintPath>..\..\..\..\Documents\chromapper\ChroMapper_Data\Managed\FileBrowser.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\FileBrowser.dll</HintPath>
     </Reference>
     <Reference Include="Intersections">
-      <HintPath>..\..\..\..\Documents\chromapper\ChroMapper_Data\Managed\Intersections.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\Intersections.dll</HintPath>
     </Reference>
     <Reference Include="Main">
-      <HintPath>..\..\..\..\Documents\chromapper\ChroMapper_Data\Managed\Main.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\Main.dll</HintPath>
     </Reference>
     <Reference Include="Plugins">
-      <HintPath>..\..\..\..\Documents\chromapper\ChroMapper_Data\Managed\Plugins.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\Plugins.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,7 +52,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\..\..\Documents\chromapper\ChroMapper_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Downloads\chromapper\ChroMapper_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

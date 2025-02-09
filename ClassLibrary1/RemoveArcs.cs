@@ -16,7 +16,6 @@ namespace RemoveArcs
     {
         private Texture2D texture2D;
         private Sprite sprite;
-        private static HashSet<BaseObject> SelectedObjects => SelectionController.SelectedObjects;
         public static bool IsArc(BaseObject o) => o is BaseArc;
         private ExtensionButton button;
         [Init]
@@ -34,7 +33,6 @@ namespace RemoveArcs
         }
         public void LoadSprite()
         {
-
             if (texture2D == null)
             {
                 using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MassRemoveArcs.Images.image.png"))
@@ -52,12 +50,15 @@ namespace RemoveArcs
         }
         public void RemoveArcs()
         {
-            var foundArcs = SelectedObjects.Where(IsArc).Cast<BaseArc>().ToList();
+            var foundArcs = SelectionController.SelectedObjects.Where(IsArc).Cast<BaseArc>().ToList();
+            
+            if (foundArcs.Count == 0) return;
+            
+            var collection = BeatmapObjectContainerCollection.GetCollectionForType(foundArcs[0].ObjectType);
+            collection.RemoveConflictingObjects(foundArcs);
             foreach (var arc in foundArcs)
             {
-                var collection = BeatmapObjectContainerCollection.GetCollectionForType(arc.ObjectType);
-                collection.RemoveConflictingObjects(new[] { arc });
-                collection.DeleteObject(arc, true, true, inCollectionOfDeletes: true);
+                collection.DeleteObject(arc, triggersAction: false);
             }
             BeatmapActionContainer.AddAction(new SelectionDeletedAction(foundArcs));
         }
